@@ -1,0 +1,22 @@
+{
+  "name": "offpaper-identity",
+  "version": "1.0.0",
+  "description": "Off Paper - Powered by Tokeniser: identity, cover art, thumbnail template and opening sequence build",
+  "scripts": {
+    "build:stills": "node build-cover-thumbs.js && node build-templates.js",
+    "build:audio": "node audio.js",
+    "build:review": "node render-video.js landscape --stills && node render-video.js vertical --stills",
+    "build:identity": "node build-identity.js",
+    "build:video": "node render-video.js landscape && node render-video.js vertical",
+    "build": "npm run build:stills && npm run build:audio && npm run build:review && npm run build:identity && npm run build:video",
+    "verify": "node verify.js"
+  },
+  "license": "UNLICENSED",
+  "type": "commonjs",
+  "dependencies": {
+    "@napi-rs/canvas": "^1.0.13",
+    "ffmpeg-static": "^5.3.0",
+    "pdf-lib": "^1.17.1"
+  },
+  "private": true
+}

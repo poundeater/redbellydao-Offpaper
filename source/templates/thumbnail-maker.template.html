@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Off Paper Thumbnail Maker</title>
+<style>
+@font-face { font-family: Montserrat; font-weight: 500; src: url(__FONT_500__) format('truetype'); }
+@font-face { font-family: Montserrat; font-weight: 700; src: url(__FONT_700__) format('truetype'); }
+@font-face { font-family: Montserrat; font-weight: 800; src: url(__FONT_800__) format('truetype'); }
+:root {
+  --slate: #343740; --mint: #A2FFC8; --light-mint: #DAFDE5;
+  --light-blue: #C9DBF1; --blue: #323B70; --teal: #009C9C; --orange: #FF9A81;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--slate); color: var(--light-mint); font-family: Montserrat, sans-serif; font-weight: 500; }
+header { padding: 20px 24px; border-bottom: 1px solid rgba(201,219,241,.18); display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; }
+header h1 { margin: 0; font-size: 20px; font-weight: 800; }
+header span { color: var(--mint); font-size: 14px; }
+main { display: grid; grid-template-columns: minmax(280px, 380px) 1fr; gap: 24px; padding: 24px; }
+@media (max-width: 860px) { main { grid-template-columns: 1fr; padding: 16px; } }
+form { display: flex; flex-direction: column; gap: 16px; }
+label { display: flex; flex-direction: column; gap: 6px; font-size: 13px; font-weight: 700; color: var(--light-blue); letter-spacing: .02em; }
+input[type=text], textarea { font: 500 16px Montserrat, sans-serif; padding: 10px 12px; border-radius: 8px; border: 1px solid rgba(201,219,241,.35); background: rgba(50,59,112,.45); color: var(--light-mint); }
+textarea { resize: vertical; min-height: 72px; }
+input:focus, textarea:focus { outline: 2px solid var(--mint); outline-offset: 1px; }
+.hint { font-weight: 500; color: var(--light-blue); opacity: .8; font-size: 12px; }
+.warn { color: var(--orange); font-size: 13px; font-weight: 700; min-height: 18px; }
+.row { display: flex; gap: 10px; flex-wrap: wrap; }
+button { font: 700 14px Montserrat, sans-serif; padding: 12px 16px; border-radius: 8px; border: 0; cursor: pointer; background: var(--mint); color: var(--slate); }
+button.ghost { background: transparent; color: var(--mint); border: 1px solid var(--mint); }
+.stage { display: flex; flex-direction: column; gap: 16px; min-width: 0; }
+.stage canvas { width: 100%; height: auto; border-radius: 6px; display: block; }
+.phone { display: flex; gap: 16px; align-items: flex-start; flex-wrap: wrap; }
+.phone figure { margin: 0; }
+.phone canvas { width: 360px; max-width: 100%; }
+figcaption { font-size: 12px; color: var(--light-blue); margin-top: 6px; }
+input[type=range] { accent-color: var(--mint); }
+</style>
+</head>
+<body>
+<header><h1>Off Paper - Powered by Tokeniser</h1><span>Episode thumbnail maker. Works offline, no account needed.</span></header>
+<main>
+  <form id="f" autocomplete="off">
+    <label>Episode number
+      <input type="text" id="episode" value="30" maxlength="12">
+      <span class="hint">A number shows as "EP 30". Words such as "Special" show as typed, in capitals.</span>
+    </label>
+    <label>Episode title
+      <textarea id="title">Your Episode Title Goes Here</textarea>
+      <span class="hint">Fits up to 3 lines. Aim for 45 characters or fewer so it reads on a phone.</span>
+    </label>
+    <div class="warn" id="warn"></div>
+    <label>Guest name
+      <input type="text" id="guest" value="Guest Name">
+    </label>
+    <label>Guest role / organisation
+      <input type="text" id="role" value="Organisation">
+    </label>
+    <label>Guest photo
+      <input type="file" id="photo" accept="image/*">
+      <span class="hint">Use a headshot the guest has supplied or approved. A 30% Slate overlay is applied automatically.</span>
+    </label>
+    <label>Photo position (left / right)
+      <input type="range" id="fx" min="0" max="100" value="50">
+    </label>
+    <label>Photo position (up / down)
+      <input type="range" id="fy" min="0" max="100" value="35">
+    </label>
+    <div class="row">
+      <button type="button" id="dl1080">Download 1920 x 1080 PNG</button>
+      <button type="button" class="ghost" id="dl720">Download 1280 x 720 PNG</button>
+    </div>
+  </form>
+  <section class="stage">
+    <canvas id="big" width="1920" height="1080" aria-label="Thumbnail preview"></canvas>
+    <div class="phone">
+      <figure><canvas id="small" width="720" height="405"></canvas><figcaption>Phone feed size check (360 px wide)</figcaption></figure>
+    </div>
+  </section>
+</main>
+<script>
+__OFFPAPER_DRAW__
+</script>
+<script>
+(function () {
+  var LOGO_BOX = __LOGO_BOX__;
+  var logo = new Image();
+  var photo = new Image();
+  var photoReady = false;
+  var $ = function (id) { return document.getElementById(id); };
+  var big = $('big'), small = $('small');
+
+  function data() {
+    return {
+      episode: $('episode').value,
+      title: $('title').value.replace(/\s+/g, ' '),
+      guest: $('guest').value,
+      role: $('role').value,
+      photoFocusX: $('fx').value / 100,
+      photoFocusY: $('fy').value / 100
+    };
+  }
+  function assets() { return { logo: logo, logoBox: LOGO_BOX, photo: photoReady ? photo : null }; }
+
+  function render() {
+    var d = data();
+    OffPaper.drawThumbnail(big.getContext('2d'), d, assets(), 1);
+    OffPaper.drawThumbnail(small.getContext('2d'), d, assets(), small.width / 1920);
+    var ctx = big.getContext('2d');
+    var fit = OffPaper.fitText(ctx, d.title, 800, 132, 84, OffPaper.THUMB.photoX - OffPaper.THUMB.margin - 40, 3, 1.04);
+    $('warn').textContent = fit.overflow ? 'Title is too long for three lines and has been cut. Please shorten it.' : '';
+  }
+
+  function download(w, h) {
+    var c = document.createElement('canvas');
+    c.width = w; c.height = h;
+    OffPaper.drawThumbnail(c.getContext('2d'), data(), assets(), w / 1920);
+    var slug = ($('episode').value || 'episode').toLowerCase().replace(/[^a-z0-9]+/g, '-');
+    var a = document.createElement('a');
+    a.download = 'offpaper-thumb-' + slug + '-' + w + 'x' + h + '.png';
+    a.href = c.toDataURL('image/png');
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+  }
+
+  ['episode', 'title', 'guest', 'role', 'fx', 'fy'].forEach(function (id) { $(id).addEventListener('input', render); });
+  $('photo').addEventListener('change', function (e) {
+    var file = e.target.files && e.target.files[0];
+    if (!file) return;
+    var r = new FileReader();
+    r.onload = function () { photo = new Image(); photo.onload = function () { photoReady = true; render(); }; photo.src = r.result; };
+    r.readAsDataURL(file);
+  });
+  $('dl1080').addEventListener('click', function () { download(1920, 1080); });
+  $('dl720').addEventListener('click', function () { download(1280, 720); });
+
+  Promise.all([
+    document.fonts.load('500 40px Montserrat'),
+    document.fonts.load('700 40px Montserrat'),
+    document.fonts.load('800 40px Montserrat'),
+    new Promise(function (res) { logo.onload = res; logo.src = '__LOGO_SRC__'; }),
+    new Promise(function (res) { photo.onload = function () { photoReady = true; res(); }; photo.src = '__PHOTO_SRC__'; })
+  ]).then(render);
+})();
+</script>
+</body>
+</html>

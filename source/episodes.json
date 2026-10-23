@@ -1,0 +1,9 @@
+{
+  "_note": "Stand-in content from past Redbelly Insights episodes listed at https://redbelly.network/ama (episode number, guest and organisation as shown on each original episode thumbnail). The originals carry no topic titles, so each headline is a working title built from the guest's organisation. Guest photos are licence-safe placeholders made for this project; replace with guest-supplied headshots.",
+  "examples": [
+    { "file": "offpaper-thumb-ep29", "episode": "29", "title": "The AUDD Stablecoin Story", "guest": "Effie Dimitropoulos", "role": "AUDD Stablecoin", "portrait": 1 },
+    { "file": "offpaper-thumb-ep28", "episode": "28", "title": "Inside Redbelly Network", "guest": "Vincent Gramoli", "role": "Redbelly Network", "portrait": 0 },
+    { "file": "offpaper-thumb-ep27", "episode": "27", "title": "In Conversation: Macropod", "guest": "Drew Bradford", "role": "Macropod", "portrait": 2 }
+  ],
+  "stressTest": { "file": "offpaper-thumb-long-title-test", "episode": "Special", "title": "How AMAL/IQ-EQ and Redbelly Are Modernizing Asset Lifecycles", "guest": "Alan Burt & Luke Andersen", "role": "CoinTelegraph Podcast, 10 December 2025", "portrait": 3 }
+}
