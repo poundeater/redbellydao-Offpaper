@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Off Paper - Powered by Tokeniser</title>
+<meta name="description" content="Visual identity, cover art, episode thumbnail template and opening sequence for Off Paper - Powered by Tokeniser.">
+<link rel="icon" href="deliverables/02_cover-art/offpaper-cover-1400.jpg">
+<style>
+@font-face { font-family: Montserrat; font-weight: 500; font-display: swap; src: url(source/assets/Montserrat-Medium.ttf) format('truetype'); }
+@font-face { font-family: Montserrat; font-weight: 700; font-display: swap; src: url(source/assets/Montserrat-Bold.ttf) format('truetype'); }
+@font-face { font-family: Montserrat; font-weight: 800; font-display: swap; src: url(source/assets/Montserrat-ExtraBold.ttf) format('truetype'); }
+:root {
+  --slate: #343740; --mint: #A2FFC8; --light-mint: #DAFDE5;
+  --light-blue: #C9DBF1; --blue: #323B70; --teal: #009C9C; --orange: #FF9A81;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0; background: var(--slate); color: var(--light-mint);
+  font: 500 17px/1.6 Montserrat, sans-serif;
+  background-image: radial-gradient(rgba(201,219,241,.10) 1.4px, transparent 1.6px);
+  background-size: 34px 34px;
+}
+a { color: var(--mint); }
+.wrap { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
+@media (max-width: 600px) { .wrap { padding: 0 16px; } }
+
+header.hero { padding: 72px 0 56px; border-bottom: 1px solid rgba(201,219,241,.16); }
+.hero-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 48px; align-items: center; }
+@media (max-width: 860px) { .hero-grid { grid-template-columns: 1fr; } }
+.kicker { font-weight: 700; color: var(--teal); letter-spacing: .14em; text-transform: uppercase; font-size: 13px; margin: 0 0 14px; }
+h1 { font-weight: 800; font-size: clamp(44px, 7vw, 84px); line-height: 1; letter-spacing: -.02em; margin: 0; }
+.tail { display: block; font-weight: 500; color: var(--mint); font-size: clamp(18px, 2.4vw, 28px); letter-spacing: .01em; margin-top: 14px; }
+.lede { color: var(--light-blue); max-width: 560px; margin: 26px 0 30px; }
+.logo { height: 40px; width: auto; display: block; }
+.hero img.cover { width: 100%; height: auto; border-radius: 10px; display: block; box-shadow: 0 30px 60px rgba(50,59,112,.55); }
+
+nav.toc { position: sticky; top: 0; z-index: 5; background: rgba(52,55,64,.94); backdrop-filter: blur(6px); border-bottom: 1px solid rgba(201,219,241,.12); }
+nav.toc .wrap { display: flex; gap: 22px; overflow-x: auto; padding-top: 14px; padding-bottom: 14px; white-space: nowrap; }
+nav.toc a { color: var(--light-blue); text-decoration: none; font-weight: 700; font-size: 14px; }
+nav.toc a:hover { color: var(--mint); }
+
+section { padding: 64px 0; border-bottom: 1px solid rgba(201,219,241,.10); }
+h2 { font-weight: 800; font-size: clamp(28px, 3.4vw, 40px); margin: 0 0 8px; letter-spacing: -.01em; }
+h2 small { color: var(--teal); font-size: 15px; font-weight: 800; margin-right: 12px; letter-spacing: .08em; vertical-align: middle; }
+.sub { color: var(--light-blue); margin: 0 0 28px; max-width: 760px; }
+figure { margin: 0; }
+figure img, figure video { width: 100%; height: auto; display: block; border-radius: 8px; background: var(--blue); }
+figcaption { color: var(--light-blue); font-size: 14px; margin-top: 10px; }
+.grid2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+.grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+@media (max-width: 860px) { .grid2, .grid3 { grid-template-columns: 1fr; } }
+.videos { display: grid; grid-template-columns: 2.2fr 1fr; gap: 24px; align-items: start; }
+@media (max-width: 760px) { .videos { grid-template-columns: 1fr; } .videos .vert { max-width: 340px; } }
+
+.swatches { display: grid; grid-template-columns: repeat(7, 1fr); gap: 12px; margin-bottom: 28px; }
+@media (max-width: 860px) { .swatches { grid-template-columns: repeat(2, 1fr); } }
+.sw { border-radius: 8px; padding: 16px 14px; min-height: 110px; display: flex; flex-direction: column; justify-content: space-between; border: 1px solid rgba(201,219,241,.22); }
+.sw b { font-weight: 700; font-size: 15px; }
+.sw span { font-size: 13px; }
+
+.btn { display: inline-block; background: var(--mint); color: var(--slate); text-decoration: none; font-weight: 800; padding: 13px 20px; border-radius: 8px; font-size: 15px; }
+.btn.ghost { background: transparent; color: var(--mint); border: 1px solid var(--mint); }
+.row { display: flex; gap: 12px; flex-wrap: wrap; }
+
+table { width: 100%; border-collapse: collapse; font-size: 15px; }
+th, td { text-align: left; padding: 12px 10px; border-bottom: 1px solid rgba(201,219,241,.14); vertical-align: top; }
+th { color: var(--teal); font-weight: 800; font-size: 13px; letter-spacing: .06em; text-transform: uppercase; }
+td a { word-break: break-word; }
+.tablewrap { overflow-x: auto; }
+.rules { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 24px; }
+@media (max-width: 760px) { .rules { grid-template-columns: 1fr; } }
+.rule { background: rgba(50,59,112,.45); border-radius: 8px; padding: 18px; }
+.rule b { display: block; font-size: 34px; font-weight: 800; color: var(--mint); line-height: 1.1; }
+.rule span { color: var(--light-blue); font-size: 14px; }
+footer { padding: 40px 0 60px; color: var(--light-blue); font-size: 14px; }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <p class="kicker">Visual identity &amp; opening sequence</p>
+      <h1>Off Paper<span class="tail">- Powered by Tokeniser</span></h1>
+      <p class="lede">Redbelly Insights relaunches as Off Paper - Powered by Tokeniser. This page collects the identity, the show cover, the episode thumbnail system and the opening titles, all built from the Tokeniser palette, Montserrat and the supplied Tokeniser logo.</p>
+      <div class="row" style="margin-bottom:34px">
+        <a class="btn" href="#opening">Watch the opening</a>
+        <a class="btn ghost" href="deliverables/03_thumbnails/editable-template/offpaper-thumbnail-maker.html">Open the thumbnail maker</a>
+      </div>
+      <img class="logo" src="source/assets/tokeniser-logo-on-dark.png" alt="Tokeniser" style="height:auto;width:220px;margin-left:-28px">
+    </div>
+    <figure><img class="cover" src="deliverables/02_cover-art/offpaper-cover-1400.jpg" alt="Off Paper - Powered by Tokeniser show cover art" width="1400" height="1400"></figure>
+  </div>
+</header>
+
+<nav class="toc" aria-label="Sections">
+  <div class="wrap">
+    <a href="#opening">Opening sequence</a>
+    <a href="#identity">Identity</a>
+    <a href="#cover">Cover art</a>
+    <a href="#thumbnails">Thumbnails</a>
+    <a href="#files">All deliverables</a>
+  </div>
+</nav>
+
+<main>
+  <section id="opening">
+    <div class="wrap">
+      <h2><small>C</small>Opening sequence</h2>
+      <p class="sub">18 seconds, music and sound design only. A document turns into tiles, the tiles lock into linked blocks, and the chain folds into the Folio mark before the show name and Tokeniser logo arrive. It ends on solid Slate so an episode can cut straight in. Each format is laid out separately, not cropped.</p>
+      <div class="videos">
+        <figure>
+          <video controls playsinline preload="metadata" poster="deliverables/05_project-files/review-stills/landscape/t15.0.jpg" src="deliverables/04_opening-sequence/offpaper-opening-16x9-1920x1080.mp4"></video>
+          <figcaption>Landscape 16:9, 1920 x 1080, 30 fps, AAC stereo, -16 LUFS</figcaption>
+        </figure>
+        <figure class="vert">
+          <video controls playsinline preload="metadata" poster="deliverables/05_project-files/review-stills/vertical/t15.0.jpg" src="deliverables/04_opening-sequence/offpaper-opening-9x16-1080x1920.mp4"></video>
+          <figcaption>Vertical 9:16, 1080 x 1920</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section id="identity">
+    <div class="wrap">
+      <h2><small>A</small>Visual identity</h2>
+      <p class="sub">The Folio mark is a 6 x 6 grid of tiles: a sheet of paper that has already become discrete units, with its top corner lifting off the page. It uses only the Tokeniser palette and Montserrat.</p>
+      <div class="swatches">
+        <div class="sw" style="background:#343740;color:#DAFDE5"><b>Slate</b><span>#343740</span></div>
+        <div class="sw" style="background:#A2FFC8;color:#343740"><b>Mint</b><span>#A2FFC8</span></div>
+        <div class="sw" style="background:#DAFDE5;color:#343740"><b>Light Mint</b><span>#DAFDE5</span></div>
+        <div class="sw" style="background:#C9DBF1;color:#343740"><b>Light Blue</b><span>#C9DBF1</span></div>
+        <div class="sw" style="background:#323B70;color:#DAFDE5"><b>Blue</b><span>#323B70</span></div>
+        <div class="sw" style="background:#009C9C;color:#DAFDE5"><b>Teal</b><span>#009C9C</span></div>
+        <div class="sw" style="background:#FF9A81;color:#343740"><b>Orange</b><span>#FF9A81</span></div>
+      </div>
+      <figure>
+        <a href="deliverables/01_identity/offpaper-identity-sheet.pdf"><img src="deliverables/01_identity/offpaper-identity-sheet.png" alt="Off Paper identity sheet: colour, type, show name, logo use and graphic devices" loading="lazy"></a>
+        <figcaption>Identity sheet: <a href="deliverables/01_identity/offpaper-identity-sheet.pdf">PDF</a> · <a href="deliverables/01_identity/offpaper-identity-sheet.png">PNG 3508 x 2480</a></figcaption>
+      </figure>
+      <div class="rules">
+        <div class="rule"><b>70%</b><span>Graphic devices on solid colour</span></div>
+        <div class="rule"><b>60%</b><span>Graphic devices on photos</span></div>
+        <div class="rule"><b>30%</b><span>Slate overlay on every photo</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="cover">
+    <div class="wrap">
+      <h2><small>B</small>Show cover art</h2>
+      <p class="sub">A square cover for Spotify, Apple Podcasts and YouTube.</p>
+      <div class="grid2">
+        <figure><img src="deliverables/02_cover-art/offpaper-cover-1400.jpg" alt="Show cover art" loading="lazy"></figure>
+        <div>
+          <div class="row">
+            <a class="btn" href="deliverables/02_cover-art/offpaper-cover-3000.png" download>Download 3000 x 3000 PNG</a>
+            <a class="btn ghost" href="deliverables/02_cover-art/offpaper-cover-1400.jpg" download>1400 x 1400 JPG</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="thumbnails">
+    <div class="wrap">
+      <h2><small>B</small>Episode thumbnails</h2>
+      <p class="sub">The template has editable slots for episode number, title, guest name, role and guest photo. Titles resize themselves to fit up to three lines so they stay readable on a phone. The examples use guests from past Redbelly Insights episodes, with placeholder portraits made for this project.</p>
+      <div class="grid3">
+        <figure><img src="deliverables/03_thumbnails/examples/offpaper-thumb-ep29-1280.png" alt="Episode 29 thumbnail" loading="lazy"><figcaption>EP 29 · Effie Dimitropoulos, AUDD Stablecoin</figcaption></figure>
+        <figure><img src="deliverables/03_thumbnails/examples/offpaper-thumb-ep28-1280.png" alt="Episode 28 thumbnail" loading="lazy"><figcaption>EP 28 · Vincent Gramoli, Redbelly Network</figcaption></figure>
+        <figure><img src="deliverables/03_thumbnails/examples/offpaper-thumb-ep27-1280.png" alt="Episode 27 thumbnail" loading="lazy"><figcaption>EP 27 · Drew Bradford, Macropod</figcaption></figure>
+      </div>
+      <div class="row" style="margin-top:28px">
+        <a class="btn" href="deliverables/03_thumbnails/editable-template/offpaper-thumbnail-maker.html">Make a thumbnail in the browser</a>
+        <a class="btn ghost" href="deliverables/03_thumbnails/editable-template/offpaper-thumbnail-template.svg" download>Figma / Penpot template (SVG)</a>
+        <a class="btn ghost" href="https://github.com/poundeater/redbellydao-Offpaper/blob/main/docs/THUMBNAIL-GUIDE.md">How to use the template</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="files">
+    <div class="wrap">
+      <h2>All deliverables</h2>
+      <p class="sub">Every file listed in the brief.</p>
+      <div class="tablewrap">
+      <table>
+        <thead><tr><th>#</th><th>Deliverable</th><th>Files</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>Identity sheet</td><td><a href="deliverables/01_identity/offpaper-identity-sheet.pdf">PDF</a> · <a href="deliverables/01_identity/offpaper-identity-sheet.png">PNG</a></td></tr>
+          <tr><td>2</td><td>Cover art</td><td><a href="deliverables/02_cover-art/offpaper-cover-3000.png">3000 x 3000 PNG</a> · <a href="deliverables/02_cover-art/offpaper-cover-1400.jpg">1400 x 1400 JPG</a></td></tr>
+          <tr><td>3</td><td>Thumbnail template + 3 examples</td><td><a href="deliverables/03_thumbnails/editable-template/offpaper-thumbnail-maker.html">Browser maker</a> · <a href="deliverables/03_thumbnails/editable-template/offpaper-thumbnail-template.svg">SVG template</a> · <a href="deliverables/03_thumbnails/examples/offpaper-thumb-ep29.png">EP 29</a> · <a href="deliverables/03_thumbnails/examples/offpaper-thumb-ep28.png">EP 28</a> · <a href="deliverables/03_thumbnails/examples/offpaper-thumb-ep27.png">EP 27</a></td></tr>
+          <tr><td>4</td><td>Opening sequence</td><td><a href="deliverables/04_opening-sequence/offpaper-opening-16x9-1920x1080.mp4">16:9 MP4</a> · <a href="deliverables/04_opening-sequence/offpaper-opening-9x16-1080x1920.mp4">9:16 MP4</a></td></tr>
+          <tr><td>5</td><td>Project files</td><td><a href="https://github.com/poundeater/redbellydao-Offpaper/tree/main/source">Source project</a> · <a href="deliverables/05_project-files/audio/offpaper-opening-score-master-48k24.wav">Score master WAV</a></td></tr>
+          <tr><td>6</td><td>Licence proof</td><td><a href="https://github.com/poundeater/redbellydao-Offpaper/blob/main/deliverables/06_licences/LICENCES.md">LICENCES.md</a> · <a href="deliverables/06_licences/Montserrat-OFL.txt">Montserrat OFL</a></td></tr>
+          <tr><td>-</td><td>Documentation</td><td><a href="https://github.com/poundeater/redbellydao-Offpaper#readme">README</a> · <a href="https://github.com/poundeater/redbellydao-Offpaper/blob/main/docs/VERIFICATION.md">Verification report</a></td></tr>
+        </tbody>
+      </table>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">Off Paper - Powered by Tokeniser</div>
+</footer>
+</body>
+</html>
